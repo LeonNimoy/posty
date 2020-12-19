@@ -20,7 +20,9 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        Auth::attempt($request->only('email', 'password'));
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return back()->with('status', 'Invalid login details');
+        };
 
         return redirect()->route('dashboard');
     }
