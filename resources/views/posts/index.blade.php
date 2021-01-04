@@ -29,6 +29,15 @@
                     <a href="" class="font-bold">{{$post->user->name}}</a> <span class="text-gray-600 text-sm">{{$post->created_at->diffForHumans()}}</span>
 
                     <p class="mb-2">{{$post->body}}</p>
+
+                    <div>
+                    <form action="{{route('post.destroy', $post)}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-blue-500">Delete</button>
+
+                </form>
+                    </div>
                 </div>
 
                 <div class="flex items-center">
@@ -46,6 +55,9 @@
                 <button type="submit" class="text-blue-500">Unlike</button>
                 </form>
                 @endif
+
+
+
                 @endauth
                 <span>{{$post->likes->count()}} {{Str::plural('like', $post->likes->count())}}</span>
 
