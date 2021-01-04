@@ -30,14 +30,16 @@
 
                     <p class="mb-2">{{$post->body}}</p>
 
+                    @if ($post->ownedBy(auth()->user()))
                     <div>
-                    <form action="{{route('post.destroy', $post)}}" method="post">
+                        <form action="{{route('post.destroy', $post)}}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-blue-500">Delete</button>
 
-                </form>
+                        </form>
                     </div>
+                    @endif
                 </div>
 
                 <div class="flex items-center">
